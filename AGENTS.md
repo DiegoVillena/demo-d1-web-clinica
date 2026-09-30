@@ -50,16 +50,19 @@ docs/capturas/        # capturas móvil/escritorio (se usan en el README)
 
 ## Estado actual
 
-- **DEMO D1 TERMINADA (checklist ficha §6 completo) y en producción**: https://d1-clinica-serrano.netlify.app
-  - Netlify Drop con dominio renombrado; verificado en vivo: 4 páginas a 200, HTTPS forzado,
-    headers de seguridad, sitemap, JSON-LD y formulario funcionando (POST→200; envíos en el
-    panel de Netlify Forms tras activar "Form detection" — más detalles en `commonerrors.md`).
+- **DEMO D1 TERMINADA (checklist ficha §6 completo), en producción y fusionada**:
+  - Producción: https://d1-clinica-serrano.netlify.app — Netlify Drop, dominio renombrado;
+    verificado en vivo: 4 páginas a 200, HTTPS forzado, headers de seguridad, sitemap,
+    JSON-LD y formulario funcionando (POST→200; envíos en el panel de Netlify Forms tras
+    activar "Form detection" — detalles y síntomas en `commonerrors.md`).
   - Ojeada de Diego en móvil ✓ (30/09/2026).
-- Rama `feat/d1-web-clinica`; todo lo de arriba entra en el commit de esta tarea (2026-09-30).
+  - **Repo GitHub**: https://github.com/DiegoVillena/demo-d1-web-clinica (público,
+    rama por defecto `main`; la demo D1 se fusiona a `main` el 30/09/2026).
 - Capturas desktop/móvil de las 4 páginas en `docs/capturas/` (generadas con tile-capture +
   sharp; ver `commonerrors.md` para cómo reproducirlas).
 - QA de ficha §6 superado (build limpio, 0 lorem, form attrs en dist, responsivo verificado).
 - Refuerzo de seguridad de serie: versiones exactas (astro 5.18.2, tailwindcss 4.3.3,
   @tailwindcss/vite 4.3.3), `postbuild` con `scripts/qa-seguro.mjs` (verificado en ambos
   sentidos: dist real pasa; scratch sembrado con .env/secreto/sourcemap/CSS de terceros falla).
-- Opcional pendiente: conectar el repo GitHub al sitio Netlify (auto-deploy en cada push).
+- Conectar GitHub ↔ Netlify (auto-deploy en push): decidimos NO hacerlo de momento (30/09/2026);
+  el deploy se repite arrastrando `dist/` (ver `GUÍA.md`).
