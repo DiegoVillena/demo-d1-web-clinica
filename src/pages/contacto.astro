@@ -1,0 +1,177 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Icono from "../components/Icono.astro";
+import { SITE } from "../data/site";
+
+const mapaOsm = `https://www.openstreetmap.org/export/embed.html?bbox=${
+  SITE.geo.lng - 0.005
+}%2C${SITE.geo.lat - 0.0035}%2C${SITE.geo.lng + 0.005}%2C${SITE.geo.lat + 0.0035}&layer=mapnik&marker=${
+  SITE.geo.lat
+}%2C${SITE.geo.lng}`;
+
+const mapaGrande = `https://www.openstreetmap.org/?mlat=${SITE.geo.lat}&mlon=${SITE.geo.lng}#map=17/${SITE.geo.lat}/${SITE.geo.lng}`;
+---
+
+<BaseLayout
+  title="Pedir cita — Clínica Dental Serrano (Albacete)"
+  description="Pide tu cita en Clínica Dental Serrano (Albacete): rellena el formulario o nos llamas al teléfono. Respondemos en menos de 24 h laborables."
+>
+  <section class="bg-gradient-to-b from-teal-50 to-white">
+    <div class="mx-auto max-w-3xl px-4 py-14 text-center sm:px-6 sm:py-16">
+      <p class="text-xs font-bold tracking-widest text-teal-700 uppercase">Contacto</p>
+      <h1 class="mt-3 text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl">
+        Pedir cita: un minuto
+      </h1>
+      <p class="mt-5 text-lg leading-relaxed">
+        Cuéntanos lo que necesitas y te llamamos para darte hora.
+        Nos suele dar tiempo a responder en menos de <strong>24 h laborables</strong>.
+      </p>
+    </div>
+  </section>
+
+  <section class="py-14 sm:py-16">
+    <div class="mx-auto max-w-6xl px-4 sm:px-6">
+      <div class="grid gap-10 lg:grid-cols-5">
+        <!-- Formulario (Netlify Forms + honeypot) -->
+        <div class="lg:col-span-3">
+          <form
+            name="contacto"
+            method="POST"
+            data-netlify="true"
+            netlify-honeypot="sitio-web"
+            class="rounded-2xl border border-slate-200 bg-white p-7 shadow-sm sm:p-8"
+          >
+            <input type="hidden" name="form-name" value="contacto" />
+            <p class="hidden" aria-hidden="true">
+              <label>No rellenes este campo si eres humano:
+                <input name="sitio-web" tabindex="-1" autocomplete="off" />
+              </label>
+            </p>
+
+            <h2 class="text-2xl font-bold text-slate-900">Formulario de cita</h2>
+            <p class="mt-2 text-sm">
+              Todos los campos menos el teléfono son necesarios.
+              No usamos tus datos para nada más que confirmar tu cita.
+            </p>
+
+            <div class="mt-6 grid gap-5 sm:grid-cols-2">
+              <div>
+                <label for="nombre" class="block text-sm font-semibold text-slate-900">Nombre</label>
+                <input
+                  id="nombre"
+                  name="nombre"
+                  type="text"
+                  required
+                  autocomplete="name"
+                  placeholder="María García"
+                  class="mt-2 w-full rounded-xl border border-slate-300 px-4 py-3 text-slate-900 placeholder:text-slate-400 focus:border-teal-700 focus:outline-none focus:ring-2 focus:ring-teal-200"
+                />
+              </div>
+              <div>
+                <label for="telefono" class="block text-sm font-semibold text-slate-900">Teléfono</label>
+                <input
+                  id="telefono"
+                  name="telefono"
+                  type="tel"
+                  autocomplete="tel"
+                  placeholder="967 000 000"
+                  class="mt-2 w-full rounded-xl border border-slate-300 px-4 py-3 text-slate-900 placeholder:text-slate-400 focus:border-teal-700 focus:outline-none focus:ring-2 focus:ring-teal-200"
+                />
+              </div>
+              <div class="sm:col-span-2">
+                <label for="email" class="block text-sm font-semibold text-slate-900">Email</label>
+                <input
+                  id="email"
+                  name="email"
+                  type="email"
+                  required
+                  autocomplete="email"
+                  placeholder="tucorreo@ejemplo.com"
+                  class="mt-2 w-full rounded-xl border border-slate-300 px-4 py-3 text-slate-900 placeholder:text-slate-400 focus:border-teal-700 focus:outline-none focus:ring-2 focus:ring-teal-200"
+                />
+              </div>
+              <div class="sm:col-span-2">
+                <label for="mensaje" class="block text-sm font-semibold text-slate-900">Mensaje</label>
+                <textarea
+                  id="mensaje"
+                  name="mensaje"
+                  required
+                  rows="5"
+                  placeholder="Quiero pedir cita para una revisión. Tengo disponibilidad por la tarde…"
+                  class="mt-2 w-full rounded-xl border border-slate-300 px-4 py-3 text-slate-900 placeholder:text-slate-400 focus:border-teal-700 focus:outline-none focus:ring-2 focus:ring-teal-200"></textarea>
+              </div>
+            </div>
+
+            <button
+              type="submit"
+              class="mt-7 w-full rounded-full bg-teal-700 px-7 py-3.5 text-base font-semibold text-white shadow-sm transition-colors hover:bg-teal-800"
+            >
+              Enviar solicitud de cita
+            </button>
+            <p class="mt-3 text-center text-xs text-slate-400">
+              Al enviar, Netlify entrega este mensaje a la clínica (modo demo).
+            </p>
+          </form>
+        </div>
+
+        <!-- Datos de contacto -->
+        <aside class="space-y-4 lg:col-span-2">
+          <div class="rounded-2xl bg-teal-50 p-6 ring-1 ring-teal-100">
+            <h2 class="text-sm font-bold tracking-wider text-teal-700 uppercase">Dirección</h2>
+            <p class="mt-3 text-slate-700">
+              {SITE.direccion.calle}<br />
+              <span class="text-slate-500">{SITE.direccion.cp} · {SITE.direccion.ciudad}</span>
+            </p>
+            <p class="mt-3 flex items-start gap-2 text-sm text-slate-600">
+              <Icono nombre="mapa" class="h-5 w-5 shrink-0 text-teal-700" />
+              Con parking en la misma calle y acceso sin escalones.
+            </p>
+          </div>
+
+          <div class="rounded-2xl bg-teal-50 p-6 ring-1 ring-teal-100">
+            <h2 class="text-sm font-bold tracking-wider text-teal-700 uppercase">Teléfono</h2>
+            <p class="mt-3 flex items-center gap-2">
+              <Icono nombre="telefono" class="h-5 w-5 text-teal-700" />
+              <a href={`tel:${SITE.telefonoHref}`} class="text-lg font-semibold text-slate-900 hover:text-teal-800">
+                {SITE.telefono}
+              </a>
+            </p>
+            <p class="mt-2 text-sm text-slate-600">Urgencias dentales: misma línea, fuera de horario.</p>
+          </div>
+
+          <div class="rounded-2xl bg-teal-50 p-6 ring-1 ring-teal-100">
+            <h2 class="text-sm font-bold tracking-wider text-teal-700 uppercase">Horario</h2>
+            <ul class="mt-3 space-y-2 text-sm">
+              {
+                SITE.horario.map(({ dias, horas }) => (
+                  <li class="flex items-start justify-between gap-4">
+                    <span class="text-slate-700">{dias}</span>
+                    <span class="font-medium text-slate-900">{horas}</span>
+                  </li>
+                ))
+              }
+            </ul>
+            <p class="mt-3 flex items-start gap-2 text-sm text-slate-600">
+              <Icono nombre="reloj" class="h-5 w-5 shrink-0 text-teal-700" />
+              Citas con hora confirmada: sin esperas.
+            </p>
+          </div>
+        </aside>
+      </div>
+
+      <!-- Mapa OpenStreetMap (sin API keys) -->
+      <div class="mt-10 overflow-hidden rounded-2xl ring-1 ring-slate-200">
+        <iframe
+          title="Mapa de la zona de la clínica en OpenStreetMap (dirección ficticia de la demo)"
+          src={mapaOsm}
+          class="h-80 w-full border-0"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+      <p class="mt-3 text-xs text-slate-400">
+        Mapa: <a href={mapaGrande} class="underline underline-offset-2 hover:text-slate-600" rel="noopener">ver en OpenStreetMap</a>.
+        Dirección y negocio ficticios, propios de esta demo.
+      </p>
+    </div>
+  </section>
+</BaseLayout>

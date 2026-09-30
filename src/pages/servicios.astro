@@ -1,0 +1,67 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Icono from "../components/Icono.astro";
+import { SERVICIOS } from "../data/services";
+---
+
+<BaseLayout
+  title="Servicios — Clínica Dental Serrano (Albacete)"
+  description="Higiene dental, empastes, ortodoncia invisible, implantes, endodoncia y odontopediatría en Albacete. Conoce cada tratamiento y pide tu cita."
+>
+  <section class="bg-gradient-to-b from-teal-50 to-white">
+    <div class="mx-auto max-w-3xl px-4 py-14 text-center sm:px-6 sm:py-16">
+      <p class="text-xs font-bold tracking-widest text-teal-700 uppercase">Servicios</p>
+      <h1 class="mt-3 text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl">
+        Seis tratamientos, una sola clínica de barrio
+      </h1>
+      <p class="mt-5 text-lg leading-relaxed">
+        Lo esencial de la odontología diaria, hecho con calma y material moderno.
+        Pincha cualquier tratamiento para verlo en detalle o llámanos y lo hablamos.
+      </p>
+    </div>
+  </section>
+
+  <section class="py-14 sm:py-16">
+    <div class="mx-auto max-w-6xl px-4 sm:px-6">
+      <ul class="grid gap-6 lg:grid-cols-2">
+        {
+          SERVICIOS.map((servicio) => (
+            <li id={servicio.slug} class="scroll-mt-24 rounded-2xl border border-slate-200 bg-white p-7 shadow-sm">
+              <div class="flex items-start gap-4">
+                <span class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-teal-50 text-teal-700 ring-1 ring-teal-100">
+                  <Icono nombre={servicio.icono} />
+                </span>
+                <div>
+                  <h2 class="text-xl font-semibold text-slate-900">{servicio.titulo}</h2>
+                  <p class="mt-2 leading-relaxed">{servicio.descripcion}</p>
+                  <a
+                    href="/contacto/"
+                    class="mt-4 inline-flex items-center gap-1 rounded-full bg-teal-700 px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-teal-800"
+                  >
+                    Pedir cita
+                  </a>
+                </div>
+              </div>
+            </li>
+          ))
+        }
+      </ul>
+
+      <div class="mt-12 rounded-2xl bg-slate-50 p-8 text-center ring-1 ring-slate-200">
+        <h2 class="text-2xl font-bold tracking-tight text-slate-900">
+          ¿No encuentras lo que buscas?
+        </h2>
+        <p class="mx-auto mt-3 max-w-xl">
+          Cuéntanoslo y te decimos si podemos ayudarte o a quién debería tocarle. Sin compromiso:
+          en la primera visita se mira todo y se te explica de palabra y por escrito.
+        </p>
+        <a
+          href="/contacto/"
+          class="mt-6 inline-flex rounded-full bg-teal-700 px-7 py-3 text-base font-semibold text-white transition-colors hover:bg-teal-800"
+        >
+          Consultar gratis
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

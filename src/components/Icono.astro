@@ -1,0 +1,50 @@
+---
+/** Iconos de línea (24×24) para los servicios y detalles de UI. */
+interface Props {
+  nombre: string;
+  class?: string;
+}
+
+const { nombre, class: clase = "h-6 w-6" } = Astro.props;
+
+const DIENTE =
+  "M12 2C10.7 2 9.7 3 8 3S5 2 3.9 2.9C2.7 3.8 2.3 5.4 2.3 7c0 2 .9 2.9 1.3 4.5.3 1.3.6 3.3 1 5.3.4 2.2 1.1 5 2.6 5.3s2-2.9 2.8-5.5c.5-1.8 1.3-3 2-3s1.5 1.2 2 3c.8 2.6 1.3 5.8 2.8 5.5s2.2-3.1 2.6-5.3c.4-2 .7-4 1-5.3.4-1.6 1.3-2.5 1.3-4.5 0-1.6-.4-3.2-1.6-4.1C19 2 18.2 3 16.4 3S13.3 2 12 2Z";
+
+const iconos: Record<string, string> = {
+  logotipo: `<path d="${DIENTE}" />`,
+  higiene: `<path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9L12 3Z"/>
+<path d="M18.5 16.5l.7 1.8 1.8.7-1.8.7-.7 1.8-.7-1.8-1.8-.7 1.8-.7.7-1.8Z"/>`,
+  empastes: `<path d="${DIENTE}"/>
+<path d="M8.5 13.5c1-1.2 2.3-1.2 3.5-1.2s2.5 0 3.5 1.2"/>`,
+  ortodoncia: `<path d="M4 10a8 8 0 0 1 16 0v2a8 8 0 0 1-16 0v-2Z"/>
+<path d="M6.5 10.5a5.5 5.5 0 0 1 11 0"/>`,
+  implantes: `<path d="M8 3h8l-.8 4H8.8L8 3Z"/>
+<path d="M10 7h4l.9 11a2.9 2.9 0 0 1-5.8 0L10 7Z"/>
+<path d="M9.6 11h4.8M9.9 15h4.2"/>`,
+  endodoncia: `<path d="${DIENTE}"/>
+<path d="M10 15v4M12 15v5M14 15v4"/>`,
+  odontopediatria: `<path d="${DIENTE}"/>
+<path d="M9.5 9.8v.4M14.5 9.8v.4"/>
+<path d="M9.8 12.6c.7.9 1.4 1.3 2.2 1.3s1.5-.4 2.2-1.3"/>`,
+  mapa: `<path d="M12 21s-7-5.3-7-11a7 7 0 1 1 14 0c0 5.7-7 11-7 11Z"/>
+<circle cx="12" cy="10" r="2.5"/>`,
+  telefono: `<path d="M5 4h4l2 5-2.5 1.5a12 12 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2Z"/>`,
+  reloj: `<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>`,
+  check: `<path d="M4 12.5l5 5L20 6.5"/>`,
+};
+---
+
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="1.5"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  class={clase}
+  aria-hidden="true"
+>
+  <Fragment
+    set:html={(iconos[nombre] ?? iconos.logotipo).split("\n").join("")} />
+</svg>

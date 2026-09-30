@@ -1,0 +1,171 @@
+---
+import { Image } from "astro:assets";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Icono from "../components/Icono.astro";
+
+import equipo1 from "../assets/equipo-1.jpg";
+import equipo2 from "../assets/equipo-2.jpg";
+import equipo3 from "../assets/equipo-3.jpg";
+import galeria1 from "../assets/galeria-1.jpg";
+import galeria2 from "../assets/galeria-2.jpg";
+import galeria3 from "../assets/galeria-3.jpg";
+import galeria4 from "../assets/galeria-4.jpg";
+import galeria5 from "../assets/galeria-5.jpg";
+import galeria6 from "../assets/galeria-6.jpg";
+
+const equipo = [
+  {
+    foto: equipo1,
+    alt: "Retrato de la doctora Elena Serrano en ropa de trabajo, frente a una pared blanca",
+    nombre: "Dra. Elena Serrano",
+    rol: "Odontóloga y fundadora",
+    bio: "Especialista en odontología general y endodoncia. Al mando desde 2011.",
+  },
+  {
+    foto: equipo2,
+    alt: "Retrato del doctor Javier Lozano con el gabinete dental detrás",
+    nombre: "Dr. Javier Lozano",
+    rol: "Ortodoncia e implantología",
+    bio: "Ortodoncia invisible e implantes. Fan de las explicaciones con dibujos.",
+  },
+  {
+    foto: equipo3,
+    alt: "Retrato de Álvaro Mena, auxiliar, sonriendo junto a la ventana del gabinete",
+    nombre: "Álvaro Mena",
+    rol: "Auxiliar dental",
+    bio: "Gestiona citas y esterilización. Si te llama el móvil, sería su voz.",
+  },
+];
+
+const galeria = [
+  { foto: galeria1, alt: "Gabinete dental limpio con sillón y equipo" },
+  { foto: galeria2, alt: "Dos profesionales revisando una radiografía panorámica con la paciente" },
+  { foto: galeria3, alt: "Mano con guantes sosteniendo un modelo dental y instrumental junto a otro profesional" },
+  { foto: galeria4, alt: "Asistente dental enmascarada tratando a una paciente con luz de gabinete" },
+  { foto: galeria5, alt: "Profesional gestionando citas en el ordenador de la consulta" },
+  { foto: galeria6, alt: "Demostración del cepillado correcto con un modelo de dentadura y cepillo" },
+];
+
+const comoTrabajamos = [
+  {
+    titulo: "Higiene y esterilización de protocolo",
+    texto:
+      "Instrumental de un solo uso siempre que se puede y autoclave con trazabilidad para lo demás. Tú no lo ves, pero cada gabinete se prepara como si fuera la primera cita del día.",
+  },
+  {
+    titulo: "Citas sin esperas",
+    texto:
+      "Te atendemos a la hora que toca y en tranquilidad: una sola paciente por profesional. Si algún día se nos cruza una urgencia, te avisamos y decides.",
+  },
+  {
+    titulo: "Presupuesto cerrado antes de empezar",
+    texto:
+      "Lo que se pacta es lo que se paga, sin sorpresas a mitad del tratamiento. Te lo explicamos de palabra y se te entrega por escrito.",
+  },
+];
+---
+
+<BaseLayout
+  title="El equipo — Clínica Dental Serrano (Albacete)"
+  description="Conoce al equipo de Clínica Dental Serrano en Albacete: dos odontólogos y auxiliar, cómo trabajamos y el gabinete donde lo hacemos. Demo con fotos de banco libre."
+>
+  <section class="bg-gradient-to-b from-teal-50 to-white">
+    <div class="mx-auto max-w-3xl px-4 py-14 text-center sm:px-6 sm:py-16">
+      <p class="text-xs font-bold tracking-widest text-teal-700 uppercase">La clínica</p>
+      <h1 class="mt-3 text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl">
+        Un equipo pequeño por convicción
+      </h1>
+      <p class="mt-5 text-lg leading-relaxed">
+        Somos pocos a propósito: quien te atiende te recibe en la visita siguiente.
+        Este es el sitio y estas son las personas.
+      </p>
+    </div>
+  </section>
+
+  <!-- Equipo -->
+  <section class="py-14 sm:py-16">
+    <div class="mx-auto max-w-6xl px-4 sm:px-6">
+      <ul class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {
+          equipo.map(({ foto, alt, nombre, rol, bio }) => (
+            <li class="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
+              <Image src={foto} alt={alt} width={460} class="aspect-4/5 w-full object-cover" />
+              <div class="p-6">
+                <h2 class="text-lg font-semibold text-slate-900">{nombre}</h2>
+                <p class="text-sm font-medium text-teal-700">{rol}</p>
+                <p class="mt-2 text-sm leading-relaxed">{bio}</p>
+              </div>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <!-- Cómo trabajamos -->
+  <section class="bg-slate-50 py-14 sm:py-16">
+    <div class="mx-auto max-w-6xl px-4 sm:px-6">
+      <div class="max-w-2xl">
+        <p class="text-xs font-bold tracking-widest text-teal-700 uppercase">Cómo trabajamos</p>
+        <h2 class="mt-2 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
+          Las reglas que no negociamos
+        </h2>
+      </div>
+      <ul class="mt-10 grid gap-5 md:grid-cols-3">
+        {
+          comoTrabajamos.map(({ titulo, texto }, i) => (
+            <li class="rounded-2xl bg-white p-6 ring-1 ring-slate-200">
+              <p class="flex h-10 w-10 items-center justify-center rounded-full bg-teal-700 text-base font-bold text-white">
+                {i + 1}
+              </p>
+              <h3 class="mt-4 text-lg font-semibold text-slate-900">{titulo}</h3>
+              <p class="mt-2 text-sm leading-relaxed">{texto}</p>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <!-- Galería -->
+  <section class="py-14 sm:py-16">
+    <div class="mx-auto max-w-6xl px-4 sm:px-6">
+      <div class="max-w-2xl">
+        <p class="text-xs font-bold tracking-widest text-teal-700 uppercase">Las instalaciones</p>
+        <h2 class="mt-2 text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl">
+          Así luce el gabinete
+        </h2>
+        <p class="mt-4 text-lg">
+          Equipo moderno y una sala tranquila. Ven a verla: se enseña en la primera visita a
+          quien lo pide.
+        </p>
+      </div>
+      <ul class="mt-10 grid grid-cols-2 gap-4 md:grid-cols-3">
+        {
+          galeria.map(({ foto, alt }) => (
+            <li class="overflow-hidden rounded-xl ring-1 ring-slate-200">
+              <Image src={foto} alt={alt} width={520} class="aspect-4/3 w-full object-cover" />
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="pb-16 sm:pb-20">
+    <div class="mx-auto max-w-6xl px-4 sm:px-6">
+      <div class="flex flex-col items-center gap-6 rounded-3xl bg-teal-700 px-6 py-12 text-center sm:flex-row sm:justify-between sm:text-left">
+        <div>
+          <h2 class="text-3xl font-bold tracking-tight text-white">Ven a conocernos</h2>
+          <p class="mt-2 max-w-xl text-lg text-teal-50">
+            Pide tu cita y visita la clínica antes de decidir nada.
+          </p>
+        </div>
+        <a href="/contacto/" class="shrink-0 rounded-full bg-white px-8 py-3.5 text-base font-semibold text-teal-800 transition-colors hover:bg-teal-50">
+          Pedir cita
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
