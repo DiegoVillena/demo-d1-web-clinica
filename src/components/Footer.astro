@@ -1,0 +1,65 @@
+---
+import Icono from "./Icono.astro";
+import { NAV, SITE } from "../data/site";
+const año = new Date().getFullYear();
+---
+
+<footer class="bg-slate-900 text-slate-300">
+  <div class="mx-auto grid max-w-6xl gap-10 px-4 py-12 sm:px-6 md:grid-cols-4 md:gap-8">
+    <div class="md:col-span-2">
+      <a href="/" class="flex w-max items-center gap-2.5 text-white" aria-label="Dental Serrano — Inicio">
+        <span class="flex h-9 w-9 items-center justify-center rounded-full bg-teal-600 text-white">
+          <Icono nombre="logotipo" class="h-5 w-5" />
+        </span>
+        <span class="text-[15px] font-bold">Dental Serrano</span>
+      </a>
+      <p class="mt-4 max-w-sm text-sm leading-relaxed">
+        Clínica dental de barrio en Albacete. Revisión completa, lista para lo que necesites,
+        citas sin esperas y presupuesto cerrado antes de empezar.
+      </p>
+      <p class="mt-4 inline-flex items-start gap-1.5 rounded-full ring-1 ring-slate-600 px-3 py-1.5 text-xs text-slate-300">
+        <span class="mt-0.5"><Icono nombre="check" class="h-3.5 w-3.5" /></span>
+        <span>Proyecto de demostración — <strong class="font-semibold text-white">negocio ficticio</strong>.</span>
+      </p>
+    </div>
+
+    <div>
+      <h2 class="text-xs font-bold tracking-wider text-slate-400 uppercase">Navegación</h2>
+      <ul class="mt-4 space-y-2.5 text-sm">
+        {
+          NAV.map(({ href, texto }) => (
+            <li>
+              <a href={href} class="transition-colors hover:text-white">{texto}</a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+
+    <div>
+      <h2 class="text-xs font-bold tracking-wider text-slate-400 uppercase">Contacto y horario</h2>
+      <ul class="mt-4 space-y-2.5 text-sm">
+        <li>
+          <Icono nombre="mapa" class="mr-1.5 inline h-4 w-4 text-teal-400" />
+          {SITE.direccion.calle} · {SITE.direccion.cp} {SITE.direccion.ciudad}
+        </li>
+        <li>
+          <Icono nombre="telefono" class="mr-1.5 inline h-4 w-4 text-teal-400" />
+          <a href={`tel:${SITE.telefonoHref}`} class="transition-colors hover:text-white">{SITE.telefono}</a>
+        </li>
+        {
+          SITE.horario.map(({ dias, horas }) => (
+            <li><span class="text-slate-400">{dias}:</span> {horas}</li>
+          ))
+        }
+      </ul>
+    </div>
+  </div>
+
+  <div class="border-t border-slate-800">
+    <div class="mx-auto flex max-w-6xl flex-col gap-2 px-4 py-5 text-xs text-slate-400 sm:flex-row sm:items-center sm:justify-between sm:px-6">
+      <p>© {año} Clínica Dental Serrano (ficticia) · Demo D1 de Operación Freelancer</p>
+      <p>Fotografías de <a href="https://www.pexels.com" class="underline decoration-slate-600 underline-offset-2 hover:text-slate-200" rel="noopener">Pexels</a></p>
+    </div>
+  </div>
+</footer>

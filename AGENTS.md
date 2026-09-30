@@ -46,7 +46,20 @@ docs/capturas/        # capturas móvil/escritorio (se usan en el README)
 - La URL canónica pública vive **solo** en `src/data/site.ts` (la usan metas, JSON-LD, sitemap y robots).
 - Rama git por tarea; **commits solo con permiso de Diego**.
 - Cabeceras de seguridad en `public/_headers`: X-Frame-Options, nosniff, Referrer-Policy. HTTPS forzado lo hace Netlify de serie.
+- **Seguridad de serie**: dependencias FIJADAS por versión exacta (sin `^`/`~`); nada de terceros (sin fonts externas, analytics ni CDNs — todo CSS/JS self-hosted; el mapa es iframe de OSM sin keys). `npm run build` termina con `scripts/qa-seguro.mjs`, que rompe el build si en `dist/` hay `.env`/keystores/sourcemaps, secretos literales o recursos remotos de `<script>`/`stylesheet`/`@import`.
 
 ## Estado actual
 
-(rama feat — demo D1 en construcción; actualizar al hacer merge a `main`)
+- **DEMO D1 TERMINADA (checklist ficha §6 completo) y en producción**: https://d1-clinica-serrano.netlify.app
+  - Netlify Drop con dominio renombrado; verificado en vivo: 4 páginas a 200, HTTPS forzado,
+    headers de seguridad, sitemap, JSON-LD y formulario funcionando (POST→200; envíos en el
+    panel de Netlify Forms tras activar "Form detection" — más detalles en `commonerrors.md`).
+  - Ojeada de Diego en móvil ✓ (30/09/2026).
+- Rama `feat/d1-web-clinica`; todo lo de arriba entra en el commit de esta tarea (2026-09-30).
+- Capturas desktop/móvil de las 4 páginas en `docs/capturas/` (generadas con tile-capture +
+  sharp; ver `commonerrors.md` para cómo reproducirlas).
+- QA de ficha §6 superado (build limpio, 0 lorem, form attrs en dist, responsivo verificado).
+- Refuerzo de seguridad de serie: versiones exactas (astro 5.18.2, tailwindcss 4.3.3,
+  @tailwindcss/vite 4.3.3), `postbuild` con `scripts/qa-seguro.mjs` (verificado en ambos
+  sentidos: dist real pasa; scratch sembrado con .env/secreto/sourcemap/CSS de terceros falla).
+- Opcional pendiente: conectar el repo GitHub al sitio Netlify (auto-deploy en cada push).
