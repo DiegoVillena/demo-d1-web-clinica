@@ -1,0 +1,52 @@
+# AGENTS.md — demo D1: Web de clínica dental
+
+## Qué es
+
+Web estática de **4 páginas** para la *"Clínica Dental Serrano"* de Albacete — **negocio 100% ficticio**, declarado en el footer y en el README. Es la **demo D1** de *Operación Freelancer*: la web que se enseña a clientes potenciales del servicio **S1** (*"así entregamos una web de negocio"*).
+
+Ficha de requisitos congelada: `C:\Users\Diego\Desktop\OperacionFreelancer\plantillas\ficha-d1.md` (cualquier cambio fuera de la ficha = ficha aparte).
+
+## Stack
+
+- **Astro (estático)** + **Tailwind CSS** (v4, vía `@tailwindcss/vite`) — sin CMS, sin backend.
+- **Netlify Forms** para el contacto (sin JS ni backend: atributo `data-netlify` + honeypot).
+- Sin fuentes externas (system font stack), sin librerías JS de UI.
+- Imágenes en `src/assets/` optimizadas por Astro (`astro:assets`) a WebP con lazy loading al hacer build.
+
+## Cómo se corre
+
+```bash
+npm install        # la primera vez
+npm run dev        # desarrollo en http://localhost:4321
+npm run build      # genera dist/ (lo que se sube a Netlify)
+npm run preview    # sirve dist/ en local
+```
+
+## Estructura
+
+```
+src/
+├── assets/            # fotos del banco de imágenes (originales, Astro las optimiza)
+├── components/        # Header, Footer
+├── data/site.ts       # TODO lo que cambia por cliente: nombre, URL, dirección, teléfono, horario
+├── layouts/BaseLayout.astro   # <head> SEO/OG/JSON-LD, skip link, menú móvil
+├── pages/             # index.astro · servicios.astro · la-clinica.astro · contacto.astro
+│   └── (robots.txt.ts, sitemap.xml.ts)  # generados desde site.ts
+├── styles/global.css  # import de Tailwind
+public/
+├── _headers           # cabeceras de seguridad de Netlify
+├── favicon.svg
+docs/capturas/        # capturas móvil/escritorio (se usan en el README)
+```
+
+## Convenciones del proyecto
+
+- Copy en español, **sin lorem ipsum**; negocio y personas 100% ficticias (no usar datos reales).
+- URLs internas con barra final (`/servicios/`) y coherentes con `sitemap.xml` / canonical.
+- La URL canónica pública vive **solo** en `src/data/site.ts` (la usan metas, JSON-LD, sitemap y robots).
+- Rama git por tarea; **commits solo con permiso de Diego**.
+- Cabeceras de seguridad en `public/_headers`: X-Frame-Options, nosniff, Referrer-Policy. HTTPS forzado lo hace Netlify de serie.
+
+## Estado actual
+
+(rama feat — demo D1 en construcción; actualizar al hacer merge a `main`)

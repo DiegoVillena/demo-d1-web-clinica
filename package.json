@@ -1,0 +1,19 @@
+{
+  "name": "demo-d1-web-clinica",
+  "version": "1.0.0",
+  "description": "Demo D1 — web de clínica dental ficticia (Astro + Tailwind) para el servicio S1 de Operación Freelancer",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview"
+  },
+  "dependencies": {
+    "astro": "^5.0.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.0.0",
+    "tailwindcss": "^4.0.0"
+  }
+}
